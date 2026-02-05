@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html class="dark" lang="pt-BR">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Chronos Luxo - Noir Edition</title>
+    
+    <!-- Fontes -->
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&amp;family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "primary": "#dba21f",
+                "primary-dark": "#b08118",
+                "background-light": "#f8f7f6",
+                "background-dark": "#0a0a0a",
+                "surface-dark": "#141414",
+                "text-gold": "#dba21f",
+                "text-silver": "#e0e0e0",
+              },
+              fontFamily: {
+                "display": ["Manrope", "sans-serif"],
+                "serif": ["Playfair Display", "serif"],
+              },
+              borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+            },
+          },
+        }
+    </script>
+    <style>
+        body { font-family: 'Manrope', sans-serif; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Playfair Display', serif; }
+        /* Evita FOUC (Flash of Unstyled Content) enquanto os componentes carregam */
+        :not(:defined) { opacity: 0; transition: opacity 0.3s; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-text-silver overflow-x-hidden selection:bg-primary selection:text-black">
+    
+    <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root">
+        
+        <!-- COMPONENTES PERSONALIZADOS -->
+        <chronos-header></chronos-header>
+        
+        <main>
+            <chronos-hero></chronos-hero>
+            <chronos-brand-statement></chronos-brand-statement>
+            <chronos-product-showcase></chronos-product-showcase>
+            <chronos-features></chronos-features>
+            <chronos-gallery></chronos-gallery>
+            <chronos-testimonials></chronos-testimonials>
+            <chronos-newsletter></chronos-newsletter>
+        </main>
+
+        <chronos-footer></chronos-footer>
+
+    </div>
+
+    <!-- Script dos Componentes -->
+    <script src="js/components.js"></script>
+</body>
+</html>
