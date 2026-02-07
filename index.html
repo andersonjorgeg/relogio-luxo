@@ -108,7 +108,7 @@
       }
     }
 
-    // 1. Header Component
+    // 1. Menu de Navegação
     class ChronosHeader extends ChronosComponent {
       get navItems() {
         return [
@@ -256,7 +256,7 @@
       }
     }
 
-    // 2. Hero Section
+    // 2. seção Hero
     class ChronosHero extends ChronosComponent {
       connectedCallback() {
         this.render(`
@@ -285,7 +285,7 @@
       }
     }
 
-    // 3. Brand Statement
+    // 3. seção 3 - Declaração da Marca
     class ChronosBrandStatement extends ChronosComponent {
       connectedCallback() {
         this.render(`
@@ -302,7 +302,7 @@
       }
     }
 
-    // 4. Product Showcase
+    // 4. seção 4 - ShowCase
     class ChronosProductShowcase extends ChronosComponent {
       connectedCallback() {
         this.render(`
@@ -336,7 +336,7 @@
       }
     }
 
-    // 5. Features
+    // 5. seção 5 - Features
     class ChronosFeatures extends ChronosComponent {
       connectedCallback() {
         this.render(`
@@ -372,35 +372,43 @@
       }
     }
 
-    // 6. Gallery
+    // 6. seção 6 - Galeria
     class ChronosGallery extends ChronosComponent {
       connectedCallback() {
+        const images = [
+          "https://lh3.googleusercontent.com/aida-public/AB6AXuAvfdTKRtbUk7RVz8-RCXNfwLyfJQw_fEeCMZ4327psHNklBcV6X1lZjOGkVMCW4ctumA2r7Ffxxz_Ghv1UpDEPph2tQe2Q5if4V90orL5tuYFK3oqzOqnK86SQRoaGxwmNhyU1lD7D-eySGUbNPXkTgn35SAfe1AXXZx_vVvJ7Th03rqh-wXeK8ZBYUpyKm8GPRjrzf8wX5QyJGmaQ3Nq_CMYmn5CCRE6Rkxui42HyBAfOAufprBHz6Aaayt6rzwJO3YAbiqlzNuo",
+          "https://lh3.googleusercontent.com/aida-public/AB6AXuAgvdUROaafMySfNRAWMux2fTEGa0ZKCyetOEZT-V04V_RP19mo_7tclTZN-69WZF6t4nL92mUzCNuk43o5wjdXPh6GPZqIl2B6FX2YLP76b1LjRC0_jQCVvlQ8ON0ErgTodTEB9HNoKGzXHEDe7zFrP7-0VH2tRtsP8VNrl-4jfhlRW9QB0z4-36pXDioCxxzFSg4Nvj5COv38w2OK73JtnFdUm1FYKLGBmPZRTEWvwQgr4-hGgjz4Hy3220rk3TX7S7InLcG7rgU",
+          "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1200&q=80"
+        ];
+
         this.render(`
         <section class="w-full">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 h-auto md:h-[400px]">
-                <div class="relative group overflow-hidden h-64 md:h-full">
-                    <div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAvfdTKRtbUk7RVz8-RCXNfwLyfJQw_fEeCMZ4327psHNklBcV6X1lZjOGkVMCW4ctumA2r7Ffxxz_Ghv1UpDEPph2tQe2Q5if4V90orL5tuYFK3oqzOqnK86SQRoaGxwmNhyU1lD7D-eySGUbNPXkTgn35SAfe1AXXZx_vVvJ7Th03rqh-wXeK8ZBYUpyKm8GPRjrzf8wX5QyJGmaQ3Nq_CMYmn5CCRE6Rkxui42HyBAfOAufprBHz6Aaayt6rzwJO3YAbiqlzNuo");'></div>
-                </div>
-                <div class="relative group overflow-hidden h-64 md:h-full">
-                    <div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAgvdUROaafMySfNRAWMux2fTEGa0ZKCyetOEZT-V04V_RP19mo_7tclTZN-69WZF6t4nL92mUzCNuk43o5wjdXPh6GPZqIl2B6FX2YLP76b1LjRC0_jQCVvlQ8ON0ErgTodTEB9HNoKGzXHEDe7zFrP7-0VH2tRtsP8VNrl-4jfhlRW9QB0z4-36pXDioCxxzFSg4Nvj5COv38w2OK73JtnFdUm1FYKLGBmPZRTEWvwQgr4-hGgjz4Hy3220rk3TX7S7InLcG7rgU");'></div>
-                </div>
-                <div class="relative group overflow-hidden h-64 md:h-full">
-                    <div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style='background-image: url("https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1200&q=80");'></div>
-                </div>
-                <div class="bg-primary flex flex-col items-center justify-center p-8 text-center h-64 md:h-full">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+                
+                ${images.map(img => `
+                    <div class="relative group overflow-hidden aspect-square md:h-[400px] md:aspect-auto">
+                        <div 
+                            class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" 
+                            style='background-image: url("${img}");'>
+                        </div>
+                    </div>
+                `).join('')}
+
+                <div class="bg-primary flex flex-col items-center justify-center p-8 text-center aspect-square md:h-[400px] md:aspect-auto">
                     <h3 class="text-3xl font-serif text-black mb-4">Lifestyle</h3>
                     <p class="text-black/80 mb-6 text-sm">Siga nossa jornada visual e inspire-se com o estilo Chronos.</p>
                     <a class="inline-flex items-center gap-2 text-black font-bold uppercase tracking-widest text-xs border-b border-black pb-1 hover:opacity-70 transition-opacity" href="#">
                         Ver Instagram
                     </a>
                 </div>
+
             </div>
         </section>
-        `);
+    `);
       }
     }
 
-    // 7. Testimonials
+    // 7. seção 7 - Depoimentos
     class ChronosTestimonials extends ChronosComponent {
       connectedCallback() {
         const testimonials = [
@@ -425,49 +433,50 @@
         ];
 
         this.render(`
-        <section class="w-full py-24 bg-background-light dark:bg-background-dark overflow-hidden">
-            <div class="max-w-[960px] mx-auto px-6">
-                
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-serif text-slate-900 dark:text-white">A Escolha dos Connoisseurs</h2>
-                </div>
-
-                <div class="relative overflow-hidden"> 
+            <section class="w-full py-24 bg-background-light dark:bg-background-dark overflow-hidden">
+                <div class="max-w-[960px] mx-auto px-6">
                     
-                    <div id="carousel-track" class="flex transition-transform duration-700 ease-in-out">
-                        ${testimonials.map(t => `
-                        <div class="min-w-full w-full flex-shrink-0 px-2">
-                            <div class="relative bg-white dark:bg-surface-dark p-10 md:p-16 rounded-sm shadow-xl border border-transparent dark:border-white/5">
-                                <span class="absolute top-8 left-8 text-6xl font-serif text-primary/20">"</span>
-                                <div class="relative z-10 flex flex-col items-center text-center gap-6">
-                                    <p class="text-lg md:text-xl text-slate-700 dark:text-gray-300 font-light italic leading-relaxed">
-                                        "${t.quote}"
-                                    </p>
-                                    <div class="flex flex-col items-center gap-2 mt-4">
-                                        <div class="w-12 h-12 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden mb-2 shadow-sm ring-2 ring-primary/10">
+                    <div class="text-center mb-16">
+                        <h2 class="text-3xl md:text-4xl font-serif text-slate-900 dark:text-white">A Escolha dos Connoisseurs</h2>
+                    </div>
+
+                    <div class="relative overflow-hidden"> 
+                        <div id="carousel-track" class="flex items-stretch transition-transform duration-700 ease-in-out">
+                            ${testimonials.map(t => `
+                            <div class="min-w-full w-full flex-shrink-0 px-2 py-4">
+                                <div class="h-full relative bg-white dark:bg-surface-dark p-8 md:p-16 rounded-sm shadow-xl border border-transparent dark:border-white/5 flex flex-col">
+                                    <span class="absolute top-6 left-6 text-6xl font-serif text-primary/20 pointer-events-none">"</span>
+                                    
+                                    <div class="relative z-10 flex-grow flex flex-col justify-center items-center text-center mb-8">
+                                        <p class="text-lg md:text-xl text-slate-700 dark:text-gray-300 font-light italic leading-relaxed">
+                                            "${t.quote}"
+                                        </p>
+                                    </div>
+
+                                    <div class="flex flex-col items-center gap-2 mt-auto">
+                                        <div class="w-14 h-14 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden mb-2 shadow-sm ring-2 ring-primary/10">
                                             <img class="w-full h-full object-cover" src="${t.img}" alt="${t.name}"/>
                                         </div>
-                                        <h4 class="text-primary font-bold uppercase tracking-wider text-sm">${t.name}</h4>
-                                        <span class="text-xs text-slate-500 dark:text-gray-500">${t.role}</span>
+                                        <h4 class="text-primary font-bold uppercase tracking-wider text-sm text-center">${t.name}</h4>
+                                        <span class="text-xs text-slate-500 dark:text-gray-500 text-center">${t.role}</span>
                                     </div>
                                 </div>
                             </div>
+                            `).join('')}
                         </div>
+                    </div>
+
+                    <div class="flex justify-center gap-3 mt-10">
+                        ${testimonials.map((_, i) => `
+                        <button 
+                            data-index="${i}" 
+                            class="carousel-dot h-2 w-2 rounded-full transition-all duration-300 ${i === 0 ? 'bg-primary w-8' : 'bg-slate-300 dark:bg-slate-700'}"
+                            aria-label="Ver depoimento ${i + 1}">
+                        </button>
                         `).join('')}
                     </div>
                 </div>
-
-                <div class="flex justify-center gap-3 mt-10">
-                    ${testimonials.map((_, i) => `
-                    <button 
-                        data-index="${i}" 
-                        class="carousel-dot h-2 w-2 rounded-full transition-all duration-300 ${i === 0 ? 'bg-primary w-8' : 'bg-slate-300 dark:bg-slate-700'}"
-                        aria-label="Ver depoimento ${i + 1}">
-                    </button>
-                    `).join('')}
-                </div>
-            </div>
-        </section>
+            </section>
         `);
 
         this.initCarousel();
@@ -479,10 +488,8 @@
         let currentIndex = 0;
 
         const updateCarousel = (index) => {
-          // Move exatamente 100% da largura para cada slide
           track.style.transform = `translateX(-${index * 100}%)`;
 
-          // Atualiza os pontos (indicador visual)
           dots.forEach((dot, i) => {
             const isActive = i === index;
             dot.classList.toggle('bg-primary', isActive);
@@ -500,14 +507,17 @@
         });
 
         // Troca automática a cada 6 segundos
-        setInterval(() => {
+        const autoPlay = setInterval(() => {
           let nextIndex = (currentIndex + 1) % dots.length;
           updateCarousel(nextIndex);
         }, 6000);
+
+        // Limpar o intervalo se o componente for removido (boa prática)
+        this.addEventListener('disconnectedCallback', () => clearInterval(autoPlay));
       }
     }
 
-    // 8. Newsletter
+    // 8. seção 8 - Newsletter
     class ChronosNewsletter extends ChronosComponent {
       connectedCallback() {
         this.render(`
@@ -525,7 +535,7 @@
       }
     }
 
-    // 9. Footer
+    // 9. seção 9 - Rodapé
     class ChronosFooter extends ChronosComponent {
       connectedCallback() {
         this.render(`
@@ -563,7 +573,7 @@
       }
     }
 
-    // 10. Coleções
+    // 10. pagina de coleções
     class ChronosCollections extends ChronosComponent {
       get collections() {
         return [
