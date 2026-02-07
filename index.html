@@ -110,124 +110,151 @@
 
     // 1. Header Component
     class ChronosHeader extends ChronosComponent {
-  get navItems() {
-    return [
-      { label: 'Início', target: 'chronos-home' },
-      { label: 'Coleções', target: 'chronos-collections' },
-      { label: 'Atelier', target: 'chronos-atelier' },
-      { label: 'Herança', target: 'chronos-heritage' }
-    ];
-  }
+      get navItems() {
+        return [
+          { label: 'Início', target: 'chronos-home' },
+          { label: 'Coleções', target: 'chronos-collections' },
+          { label: 'Atelier', target: 'chronos-atelier' },
+          { label: 'Herança', target: 'chronos-heritage' }
+        ];
+      }
 
-  get styles() {
-    return {
-      link: `nav-link cursor-pointer uppercase tracking-widest text-xs font-medium text-slate-600 dark:text-gray-400 hover:text-[#dba21f] transition-all duration-300 md:relative md:after:content-[''] md:after:absolute md:after:w-0 md:after:h-[2px] md:after:bg-[#dba21f] md:after:left-0 md:after:-bottom-1 md:hover:after:w-full md:after:transition-all`,
-      mobileLink: `nav-link cursor-pointer font-serif text-2xl text-slate-900 dark:text-white hover:text-[#D4AF37] transition-colors duration-300 block w-full`
-    };
-  }
+      get styles() {
+        return {
+          link: `nav-link cursor-pointer uppercase tracking-widest text-xs font-medium text-slate-600 dark:text-gray-400 hover:text-[#dba21f] transition-all duration-300 md:relative md:after:content-[''] md:after:absolute md:after:w-0 md:after:h-[2px] md:after:bg-[#dba21f] md:after:left-0 md:after:-bottom-1 md:hover:after:w-full md:after:transition-all`,
+          mobileLink: `nav-link cursor-pointer font-serif text-2xl text-slate-900 dark:text-white hover:text-[#D4AF37] transition-colors duration-300 block w-full`
+        };
+      }
 
-  connectedCallback() {
-    this.render(`
-    <header class="sticky top-0 z-[100] w-full border-b border-[#e5e2dc] dark:border-[#2a2a2a]">
-        <div class="relative z-[110] backdrop-blur-md bg-background-light/90 dark:bg-background-dark/90 px-5 py-4">
-            <div class="max-w-[1280px] mx-auto flex items-center justify-between">
-                <div class="flex items-center gap-2 cursor-pointer nav-link" data-target="chronos-home">
-                    <div class="text-[#D4AF37]"><span class="material-symbols-outlined text-2xl md:text-3xl">watch</span></div>
-                    <h2 class="text-slate-900 dark:text-white text-lg md:text-xl font-bold tracking-widest uppercase font-serif">Chronos</h2>
-                </div>
+      connectedCallback() {
+        this.render(`
+        <header id="main-header" class="fixed top-0 left-0 z-[150] w-full transition-all duration-500 ease-in-out border-b border-transparent">
+            <div id="header-bg" class="absolute inset-0 opacity-0 transition-opacity duration-500 bg-gradient-to-b from-background-light/95 to-background-light/80 dark:from-background-dark/95 dark:to-background-dark/80 backdrop-blur-md"></div>
+            
+            <div class="relative z-[160] px-5 py-4 transition-all duration-500" id="header-container">
+                <div class="max-w-[1280px] mx-auto flex items-center justify-between">
+                    <div class="flex items-center gap-2 cursor-pointer nav-link" data-target="chronos-home">
+                        <div class="text-[#D4AF37]"><span class="material-symbols-outlined text-2xl md:text-3xl">watch</span></div>
+                        <h2 class="text-slate-900 dark:text-white text-lg md:text-xl font-bold tracking-widest uppercase font-serif">Chronos</h2>
+                    </div>
 
-                <nav class="hidden md:flex items-center gap-8">
-                    ${this.navItems.map(item => `
-                        <a class="${this.styles.link}" data-target="${item.target}">
-                            ${item.label}
-                        </a>
-                    `).join('')}
-                </nav>
-
-                <div class="flex items-center gap-5">
-                    <button id="menu-toggle" class="flex items-center md:hidden text-slate-900 dark:text-white transition-transform active:scale-90" aria-label="Menu">
-                        <span id="menu-icon" class="material-symbols-outlined text-[32px]">menu</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <div id="mobile-menu" class="fixed inset-0 bg-background-light dark:bg-background-dark z-[105] transition-all duration-500 ease-in-out -translate-y-full pointer-events-none overflow-hidden">
-            <div class="flex flex-col h-screen w-full px-8 pt-10 pb-12"> 
-                
-                <div class="flex flex-col items-start gap-2 w-full">
-                    
-                    ${this.navItems.map(item => `
-                        <div class="w-full border-b border-slate-100 dark:border-white/5 last:border-0">
-                             <a class="${this.styles.mobileLink} py-6" data-target="${item.target}">
+                    <nav class="hidden md:flex items-center gap-8">
+                        ${this.navItems.map(item => `
+                            <a class="${this.styles.link}" data-target="${item.target}">
                                 ${item.label}
                             </a>
-                        </div>
-                    `).join('')}
+                        `).join('')}
+                    </nav>
+
+                    <div class="flex items-center gap-5">
+                        <button id="menu-toggle" class="flex items-center md:hidden text-slate-900 dark:text-white transition-transform active:scale-90" aria-label="Menu">
+                            <span id="menu-icon" class="material-symbols-outlined text-[32px]">menu</span>
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
-    </header>
-    `);
 
-    this.initNavigation();
-    this.initMobileMenu();
-  }
+            <div id="mobile-menu" class="fixed inset-0 bg-background-light dark:bg-background-dark z-[155] transition-all duration-500 ease-in-out -translate-y-full pointer-events-none overflow-hidden">
+                <div class="flex flex-col h-screen w-full px-8 pt-12 pb-12">
+                    <div class="flex flex-col items-start gap-2 w-full">
+                        ${this.navItems.map(item => `
+                            <div class="w-full border-b border-slate-100 dark:border-white/5 last:border-0">
+                                <a class="${this.styles.mobileLink} py-6" data-target="${item.target}">
+                                    ${item.label}
+                                </a>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            </div>
+        </header>
 
-  initMobileMenu() {
-    const menu = this.querySelector('#mobile-menu');
-    const toggle = this.querySelector('#menu-toggle');
-    const icon = this.querySelector('#menu-icon');
-    const links = menu.querySelectorAll('.nav-link');
+        <div class="h-[72px] md:h-[80px]"></div>
+        `);
 
-    const toggleMenu = () => {
-      const isClosed = menu.classList.contains('-translate-y-full');
-      
-      if (isClosed) {
-        // ABRIR
-        menu.classList.remove('-translate-y-full', 'pointer-events-none');
-        icon.innerText = 'close';
-        document.body.style.overflow = 'hidden';
-      } else {
-        // FECHAR
-        menu.classList.add('-translate-y-full', 'pointer-events-none');
-        icon.innerText = 'menu';
-        document.body.style.overflow = '';
+        this.initNavigation();
+        this.initMobileMenu();
+        this.initScrollEffect();
       }
-    };
 
-    toggle.onclick = (e) => {
-      e.stopPropagation();
-      toggleMenu();
-    };
+      initScrollEffect() {
+        const header = this.querySelector('#main-header');
+        const headerBg = this.querySelector('#header-bg');
+        const container = this.querySelector('#header-container');
 
-    // Fecha o menu ao clicar nos links
-    links.forEach(l => l.addEventListener('click', () => {
-      menu.classList.add('-translate-y-full', 'pointer-events-none');
-      icon.innerText = 'menu';
-      document.body.style.overflow = '';
-    }));
-  }
+        window.addEventListener('scroll', () => {
+          const scrollValue = window.scrollY;
 
-  initNavigation() {
-    const links = this.querySelectorAll('.nav-link');
-    const contentArea = document.getElementById('content-area');
+          if (scrollValue > 50) {
+            // Estado ao descer: Com fundo, blur e borda
+            headerBg.classList.replace('opacity-0', 'opacity-100');
+            header.classList.replace('border-transparent', 'border-slate-200/50');
+            header.classList.add('dark:border-white/10', 'shadow-sm');
+            container.classList.replace('py-4', 'py-3'); // O menu "encolhe" levemente
+          } else {
+            // Estado no topo: Transparente e limpo
+            headerBg.classList.replace('opacity-100', 'opacity-0');
+            header.classList.replace('border-slate-200/50', 'border-transparent');
+            header.classList.remove('dark:border-white/10', 'shadow-sm');
+            container.classList.replace('py-3', 'py-4');
+          }
+        });
+      }
 
-    links.forEach(link => {
-      link.addEventListener('click', (e) => {
-        const targetTag = link.getAttribute('data-target');
-        if (contentArea && targetTag) {
-          contentArea.style.opacity = '0';
-          setTimeout(() => {
-            contentArea.innerHTML = `<${targetTag}></${targetTag}>`;
-            contentArea.style.opacity = '1';
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          }, 250);
-        }
-      });
-    });
-  }
-}
+      initMobileMenu() {
+        const menu = this.querySelector('#mobile-menu');
+        const toggle = this.querySelector('#menu-toggle');
+        const icon = this.querySelector('#menu-icon');
+        const links = menu.querySelectorAll('.nav-link');
+
+        const toggleMenu = () => {
+          const isClosed = menu.classList.contains('-translate-y-full');
+
+          if (isClosed) {
+            // ABRIR
+            menu.classList.remove('-translate-y-full', 'pointer-events-none');
+            icon.innerText = 'close';
+            document.body.style.overflow = 'hidden';
+          } else {
+            // FECHAR
+            menu.classList.add('-translate-y-full', 'pointer-events-none');
+            icon.innerText = 'menu';
+            document.body.style.overflow = '';
+          }
+        };
+
+        toggle.onclick = (e) => {
+          e.stopPropagation();
+          toggleMenu();
+        };
+
+        // Fecha o menu ao clicar nos links
+        links.forEach(l => l.addEventListener('click', () => {
+          menu.classList.add('-translate-y-full', 'pointer-events-none');
+          icon.innerText = 'menu';
+          document.body.style.overflow = '';
+        }));
+      }
+
+      initNavigation() {
+        const links = this.querySelectorAll('.nav-link');
+        const contentArea = document.getElementById('content-area');
+
+        links.forEach(link => {
+          link.addEventListener('click', (e) => {
+            const targetTag = link.getAttribute('data-target');
+            if (contentArea && targetTag) {
+              contentArea.style.opacity = '0';
+              setTimeout(() => {
+                contentArea.innerHTML = `<${targetTag}></${targetTag}>`;
+                contentArea.style.opacity = '1';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }, 250);
+            }
+          });
+        });
+      }
+    }
 
     // 2. Hero Section
     class ChronosHero extends ChronosComponent {
@@ -596,7 +623,7 @@
             </div>
         </section>
 
-        <div id="product-modal" class="fixed inset-0 z-[100] flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-500 backdrop-blur-sm bg-black/60">
+        <div id="product-modal" class="fixed inset-0 z-[100] flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-500 backdrop-blur-sm bg-black/60 pt-24">
             <div id="modal-content" class="bg-white dark:bg-surface-dark max-w-4xl w-full max-h-[90vh] overflow-y-auto relative rounded-sm shadow-2xl transform scale-95 transition-transform duration-500">
                 </div>
         </div>
